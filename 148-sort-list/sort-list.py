@@ -37,6 +37,7 @@ class Solution:
                 tail.next = right
                 right = right.next
             tail = tail.next
+        tail.next
         if left:
             tail.next = left
         if right:
