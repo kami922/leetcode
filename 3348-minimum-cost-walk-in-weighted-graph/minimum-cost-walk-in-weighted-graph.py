@@ -15,7 +15,7 @@ class DSU:
             self.parent[yy] = xx
         self.weights[xx] = self.weights[yy] = self.weights[xx] & self.weights[yy] & weight
         if self.rank[xx] == self.rank[yy]:
-            self.rank[xx] += 2
+            self.rank[xx] += 3
     def minimum_cost_of_walk(self, x, y):
         if x == y: return 0
         if self.find(x) != self.find(y): return -1
