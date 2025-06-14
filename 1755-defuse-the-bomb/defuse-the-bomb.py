@@ -1,18 +1,20 @@
 class Solution:
-    def decrypt(self,code: List[int], k: int) -> List[int]:
-            n = len(code)
-            
-            # If k == 0, all elements should be 0
-            if k == 0:
-                return [0] * n
+    def decrypt(self, code: List[int], k: int) -> List[int]:
+        N = len(code)
+        res = [0] * N
 
-            # Double the array to simulate circular behavior
-            extended_code = code * 2
+        l = 0
+        cur_sum = 0
+        for r in range(N + abs(k)):
+            cur_sum += code[r % N]
 
-            # Handle positive and negative k
-            if k > 0:
-                return [sum(extended_code[i + 1:i + 1 + k]) for i in range(n)]
-            else:
-                k = abs(k)
-                return [sum(extended_code[i + n - k:i + n]) for i in range(n)]
-        
+            if r - l + 1 > abs(k):
+                cur_sum -= code[l % N]
+                l = (l + 1) % N
+
+            if r - l + 1 == abs(k):
+                if k > 0:
+                    res[(l - 1) % N] = cur_sum
+                elif k < 0:
+                    res[(r + 1) % N] = cur_sum
+        return res
