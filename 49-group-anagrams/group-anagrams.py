@@ -2,7 +2,7 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         anagram_map = {}
         for string in strs:
-            key = "".join(sorted(list(string)))
+            key = "".join(sorted(string))
             if key in anagram_map:
                 anagram_map[key].append(string)
             else:
