@@ -5,29 +5,26 @@
 #         self.next = next
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
-        # Detailed drawing is key
+        if not head or not head.next:
+            return
 
+        n = 0
+        track_stack = []
+        temp = head
+        while temp:
+            track_stack.append(temp)
+            temp = temp.next
+            n += 1
 
-        if not head or not head.next:   return head
+        temp = head
 
-        # FINDING MIDDLE
-        L = F = S = head
-        while F and F.next:     F, S = F.next.next, S.next      
+        for i in range(n // 2):
+            str_node = temp.next
+            last_node_from_stack = track_stack.pop()
+            temp.next = last_node_from_stack
+            last_node_from_stack.next = str_node
+            temp = str_node
 
-        # REVERSING SECOND HALF LL
-        prev, curr = None, S
-        while curr:
-            future = curr.next
-            curr.next = prev
-            prev, curr = curr, future
-        R = prev
-
-        # REWIRING LL Using 2 pointers
-        while L != S:   #draw even case and see why its not != R
-            L.next, L = R, L.next
-            R.next, R = L, R.next
-        L.next = None
-        return head
-
+        temp.next = None
         
             
