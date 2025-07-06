@@ -3,37 +3,45 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
 class Solution:
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]: 
-        if not lists or len(lists) == 0:
-            return None
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        # Initialize a min-heap.
+        # Python's heapq module implements a min-heap.
+        # We'll store tuples of (value, index, ListNode) in the heap.
+        # The index is added to handle cases where two nodes might have the same value,
+        # as heapq needs to compare the entire tuple and ListNode objects are not
+        # directly comparable by default. The index provides a unique tie-breaker.
+        min_heap = []
         
-        while len(lists) > 1:
-            temp = []
-            for i in range(0, len(lists), 2):
-                l1 = lists[i]
-                l2 = lists[i+1] if i + 1 < len(lists) else None
-                temp.append(self.merge_lists(l1, l2))
-            lists = temp
+        # Populate the heap with the first node from each list
+        # Iterate through the input list of linked list heads
+        for i, head in enumerate(lists):
+            if head:
+                # Push a tuple (node_value, list_index, node_object) onto the heap.
+                # The heap will prioritize based on node_value.
+                heapq.heappush(min_heap, (head.val, i, head))
+
+        # Create a dummy node to simplify the construction of the merged list.
+        # This avoids special handling for the head of the merged list.
+        dummy_head = ListNode(0)
+        current_tail = dummy_head # This pointer will always point to the last node of the merged list
+
+        # Process nodes from the heap until it's empty
+        while min_heap:
+            # Pop the smallest element from the heap.
+            # it[0] is the value, it[1] is the list_index, it[2] is the ListNode object.
+            val, list_idx, node = heapq.heappop(min_heap)
+
+            # Append the popped node to the merged list
+            current_tail.next = node
+            current_tail = node # Move the current_tail pointer to the newly added node
+
+            # If the popped node has a next node, push it onto the heap.
+            # This ensures we always have the next smallest element from that list available.
+            if node.next:
+                heapq.heappush(min_heap, (node.next.val, list_idx, node.next))
         
-        return lists[0]
-    
-    def merge_lists(self, l1, l2):
-        node = ListNode()
-        ans = node
-        
-        while l1 and l2:
-            if l1.val > l2.val:
-                node.next = l2
-                l2 = l2.next
-            else:
-                node.next = l1
-                l1 = l1.next
-            node = node.next
-        
-        if l1:
-            node.next = l1
-        else:
-            node.next = l2
-        
-        return ans.next
+        # The merged list starts from dummy_head.next
+        return dummy_head.next
+
