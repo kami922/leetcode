@@ -9,7 +9,7 @@ class Solution:
         if root is None:
             return []
 
-        leftTree = self.postorderTraversal(root.left)
         rightTree = self.postorderTraversal(root.right)
+        leftTree = self.postorderTraversal(root.left)
         curRoot = [root.val]
         return leftTree + rightTree + curRoot
