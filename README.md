@@ -14,6 +14,7 @@
 ## Linked List
 |  |
 | ------- |
+| [0061-rotate-list](https://github.com/kami922/leetcode/tree/master/0061-rotate-list) |
 | [0086-partition-list](https://github.com/kami922/leetcode/tree/master/0086-partition-list) |
 | [0146-lru-cache](https://github.com/kami922/leetcode/tree/master/0146-lru-cache) |
 ## Design
@@ -27,6 +28,7 @@
 ## Two Pointers
 |  |
 | ------- |
+| [0061-rotate-list](https://github.com/kami922/leetcode/tree/master/0061-rotate-list) |
 | [0086-partition-list](https://github.com/kami922/leetcode/tree/master/0086-partition-list) |
 ## Depth-First Search
 |  |
