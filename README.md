@@ -5,6 +5,7 @@
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/kami922/leetcode/tree/master/0001-two-sum) |
+| [0026-remove-duplicates-from-sorted-array](https://github.com/kami922/leetcode/tree/master/0026-remove-duplicates-from-sorted-array) |
 | [0200-number-of-islands](https://github.com/kami922/leetcode/tree/master/0200-number-of-islands) |
 ## Hash Table
 |  |
@@ -28,6 +29,7 @@
 ## Two Pointers
 |  |
 | ------- |
+| [0026-remove-duplicates-from-sorted-array](https://github.com/kami922/leetcode/tree/master/0026-remove-duplicates-from-sorted-array) |
 | [0061-rotate-list](https://github.com/kami922/leetcode/tree/master/0061-rotate-list) |
 | [0086-partition-list](https://github.com/kami922/leetcode/tree/master/0086-partition-list) |
 ## Depth-First Search
